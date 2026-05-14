@@ -1,0 +1,44 @@
+## Final Checklist
+
+Before recording your video, verify:
+
+### Azure Resources
+- [ ] Resource group `MST300-project2-rg` created
+- [ ] MST300-vnet1 created with `vnet1-subnet1` and `AzureBastionSubnet`
+- [ ] MST300-vnet2 created with `vnet2-subnet1`
+- [ ] No overlapping address spaces between VNets
+- [ ] Azure Bastion deployed and running in AzureBastionSubnet
+- [ ] No public IPs on any VM (only Bastion has a public IP)
+
+### Load Balancer
+- [ ] MST300-lb created as Internal type
+- [ ] MST300-BackendPool configured with both webservers
+- [ ] MST300-HealthProbe configured (HTTP, port 80, interval 15)
+- [ ] MST300-HTTPRule configured (TCP, port 80, idle timeout 15)
+
+### Web Servers
+- [ ] webserver1-vm in Availability Zone 1
+- [ ] webserver2-vm in Availability Zone 2
+- [ ] IIS installed on both servers
+- [ ] webserver1-vm: green background, correct title and body text
+- [ ] webserver2-vm: yellow background, correct title and body text
+- [ ] Both VMs tested locally with `http://localhost`
+
+### Client VM
+- [ ] client-vm running in MST300-vnet2 / vnet2-subnet1
+- [ ] No public IP on client-vm
+
+### Networking
+- [ ] VNet peering between vnet1 and vnet2 — status **"Connected"**
+- [ ] Peering configured in both directions
+
+### Private DNS
+- [ ] DNS zone named `studentID.mst300.com`
+- [ ] Zone linked to both MST300-vnet1 and MST300-vnet2
+- [ ] A record `www` pointing to load balancer frontend IP
+
+### Testing
+- [ ] Connected to client-vm via Bastion successfully
+- [ ] Website loads at `http://www.studentID.mst300.com`
+- [ ] Page alternates between green and yellow on refresh (InPrivate window)
+- [ ] DNS resolves correctly via `nslookup`
